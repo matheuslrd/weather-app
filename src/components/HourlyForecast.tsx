@@ -14,7 +14,7 @@ const HourlyForecast = ({ hourlyData }: HourlyForecastProps) => {
   return (
     <Card className="glass-effect border-white/20 animate-slide-up">
       <CardHeader>
-        <CardTitle className="text-gray-800">Hourly Forecast</CardTitle>
+        <CardTitle className="text-light">Hourly Forecast</CardTitle>
       </CardHeader>
       <CardContent>
         <ScrollArea className="w-full">
@@ -22,9 +22,9 @@ const HourlyForecast = ({ hourlyData }: HourlyForecastProps) => {
             {next24Hours.map((hour, index) => (
               <div
                 key={hour.time_epoch}
-                className="flex flex-col items-center gap-2 p-3 rounded-lg bg-white/30 min-w-[80px] hover:bg-white/40 transition-colors"
+                className="flex flex-col items-center gap-2 p-3 rounded-lg bg-white/30 dark:bg-white/10 min-w-[80px] hover:bg-white/40 dark:hover:bg-white/20 transition-colors"
               >
-                <p className="text-xs text-gray-600 font-medium">
+                <p className="text-xs text-muted-light font-medium">
                   {index === 0 
                     ? 'Now' 
                     : new Date(hour.time).toLocaleTimeString('en-US', {
@@ -41,12 +41,12 @@ const HourlyForecast = ({ hourlyData }: HourlyForecastProps) => {
                   className="text-primary"
                 />
                 
-                <p className="font-semibold text-gray-800">
+                <p className="font-semibold text-light">
                   {Math.round(hour.temp_c)}°
                 </p>
                 
                 {hour.chance_of_rain > 0 && (
-                  <p className="text-xs text-blue-600">
+                  <p className="text-xs text-blue-600 dark:text-blue-400">
                     {hour.chance_of_rain}%
                   </p>
                 )}
