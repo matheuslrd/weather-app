@@ -14,24 +14,24 @@
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 207 89% 54%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 220 98% 61%;
+    --primary-foreground: 220 14% 11%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 9% 46%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 207 89% 54%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 220 98% 61%;
 
     --radius: 0.75rem;
   }
@@ -46,7 +46,7 @@
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 207 89% 54%;
+    --primary: 217 91% 60%;
     --primary-foreground: 222.2 47.4% 11.2%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -63,7 +63,7 @@
 
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
-    --ring: 207 89% 54%;
+    --ring: 217 91% 60%;
   }
 }
 
@@ -75,66 +75,124 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   }
 }
 
 @layer utilities {
   .glass-effect {
-    backdrop-filter: blur(16px) saturate(180%);
-    background-color: rgba(255, 255, 255, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    backdrop-filter: blur(20px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   }
   
   .dark .glass-effect {
-    background-color: rgba(17, 25, 40, 0.75);
-    border: 1px solid rgba(255, 255, 255, 0.125);
+    background-color: rgba(15, 23, 42, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
   }
 
   .weather-bg-sunny {
-    background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FF8C00 100%);
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 30%, #d97706 60%, #92400e 100%);
   }
 
   .weather-bg-rainy {
-    background: linear-gradient(135deg, #4682B4 0%, #2F4F4F 50%, #1E3A8A 100%);
+    background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 30%, #0369a1 60%, #1e3a8a 100%);
   }
 
   .weather-bg-cloudy {
-    background: linear-gradient(135deg, #B0C4DE 0%, #708090 50%, #4F4F4F 100%);
+    background: linear-gradient(135deg, #94a3b8 0%, #64748b 30%, #475569 60%, #334155 100%);
   }
 
   .weather-bg-stormy {
-    background: linear-gradient(135deg, #2F2F2F 0%, #4B0082 50%, #1a1a1a 100%);
+    background: linear-gradient(135deg, #4c1d95 0%, #3730a3 30%, #312e81 60%, #1e1b4b 100%);
   }
 
   .weather-bg-snowy {
-    background: linear-gradient(135deg, #F8F8FF 0%, #E6E6FA 50%, #D3D3D3 100%);
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 30%, #cbd5e1 60%, #94a3b8 100%);
   }
 
   .weather-bg-clear {
-    background: linear-gradient(135deg, #87CEEB 0%, #4169E1 50%, #0000CD 100%);
+    background: linear-gradient(135deg, #06b6d4 0%, #0891b2 30%, #0e7490 60%, #155e75 100%);
   }
 
   .dark .weather-bg-sunny {
-    background: linear-gradient(135deg, #B8860B 0%, #DAA520 50%, #CD853F 100%);
+    background: linear-gradient(135deg, #d97706 0%, #b45309 30%, #92400e 60%, #78350f 100%);
   }
 
   .dark .weather-bg-rainy {
-    background: linear-gradient(135deg, #2F4F4F 0%, #1E1E1E 50%, #0F0F0F 100%);
+    background: linear-gradient(135deg, #0369a1 0%, #075985 30%, #0c4a6e 60%, #082f49 100%);
   }
 
   .dark .weather-bg-cloudy {
-    background: linear-gradient(135deg, #696969 0%, #2F2F2F 50%, #1C1C1C 100%);
+    background: linear-gradient(135deg, #475569 0%, #334155 30%, #1e293b 60%, #0f172a 100%);
   }
 
   .dark .weather-bg-stormy {
-    background: linear-gradient(135deg, #1a1a1a 0%, #2F0A2F 50%, #000000 100%);
+    background: linear-gradient(135deg, #312e81 0%, #1e1b4b 30%, #1e1b4b 60%, #0f0f23 100%);
   }
 
   .dark .weather-bg-snowy {
-    background: linear-gradient(135deg, #D3D3D3 0%, #A9A9A9 50%, #696969 100%);
+    background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 30%, #64748b 60%, #475569 100%);
   }
 
   .dark .weather-bg-clear {
-    background: linear-gradient(135deg, #4682B4 0%, #2F4F4F 50%, #1E1E1E 100%);
+    background: linear-gradient(135deg, #0e7490 0%, #155e75 30%, #164e63 60%, #083344 100%);
+  }
+
+  .modern-card {
+    @apply glass-effect rounded-2xl p-6 shadow-lg border-0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .modern-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+  }
+
+  .dark .modern-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  }
+
+  .weather-icon-glow {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  }
+
+  .dark .weather-icon-glow {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  }
+
+  .modern-input {
+    @apply glass-effect rounded-xl border-0 px-4 py-3 text-foreground placeholder:text-muted-foreground;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .modern-input:focus {
+    @apply ring-2 ring-primary/50 outline-none;
+    backdrop-filter: blur(24px);
+  }
+
+  .modern-button {
+    @apply rounded-xl px-6 py-3 font-medium transition-all duration-200;
+    background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--primary) / 0.8) 100%);
+    color: hsl(var(--primary-foreground));
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.3);
+  }
+
+  .modern-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px hsl(var(--primary) / 0.4);
+  }
+
+  .modern-button:active {
+    transform: translateY(0);
+  }
+
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--foreground) / 0.7) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

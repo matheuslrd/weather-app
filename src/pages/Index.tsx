@@ -73,20 +73,24 @@ const Index = () => {
   const hasError = currentError || forecastError;
   
   return (
-    <div className={`min-h-screen weather-bg-${weatherTheme} transition-all duration-1000`}>
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <div className="flex justify-between items-start mb-6">
+    <div className={`min-h-screen weather-bg-${weatherTheme} transition-all duration-1000 relative overflow-hidden`}>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/10 pointer-events-none" />
+      
+      <div className="container mx-auto px-4 py-8 relative z-10">
+        <div className="text-center mb-12">
+          <div className="flex justify-between items-start mb-8">
             <div />
-            <div>
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
+            <div className="text-center">
+              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in text-gradient drop-shadow-lg">
                 Weather App
               </h1>
-              <p className="text-white/80 text-lg mb-8 animate-slide-up">
-                Get real-time weather information for any location
+              <p className="text-white/90 text-xl mb-8 animate-slide-up font-medium">
+                Beautiful weather forecasts for anywhere in the world
               </p>
             </div>
-            <ThemeToggle />
+            <div className="mt-4">
+              <ThemeToggle />
+            </div>
           </div>
           
           <div className="flex justify-center animate-slide-up">
@@ -99,9 +103,9 @@ const Index = () => {
         </div>
         
         {isLoading && (
-          <div className="flex flex-col items-center gap-4 py-12">
+          <div className="flex flex-col items-center gap-6 py-16">
             <LoadingSpinner size="lg" />
-            <p className="text-white/80">Loading weather data...</p>
+            <p className="text-white/90 text-lg font-medium">Loading weather data...</p>
           </div>
         )}
         
@@ -115,11 +119,11 @@ const Index = () => {
         )}
         
         {currentWeather && !isLoading && (
-          <div className="space-y-6 max-w-4xl mx-auto">
+          <div className="space-y-8 max-w-5xl mx-auto">
             <CurrentWeather data={currentWeather} />
             
             {forecastWeather?.forecast?.forecastday && (
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid lg:grid-cols-2 gap-8">
                 <ForecastCard forecast={forecastWeather.forecast.forecastday} />
                 
                 {forecastWeather.forecast.forecastday[0]?.hour && (
@@ -130,8 +134,8 @@ const Index = () => {
           </div>
         )}
         
-        <footer className="text-center mt-12 pt-8 border-t border-white/20">
-          <p className="text-white/60 text-sm">
+        <footer className="text-center mt-16 pt-8 border-t border-white/30">
+          <p className="text-white/70 text-sm font-medium">
             Weather data provided by WeatherAPI
           </p>
         </footer>
