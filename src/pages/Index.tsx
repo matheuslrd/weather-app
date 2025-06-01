@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
 import { useTheme } from '@/hooks/useTheme';
@@ -10,6 +9,7 @@ import LoadingSpinner from '@/components/LoadingSpinner';
 import ErrorMessage from '@/components/ErrorMessage';
 import ThemeToggle from '@/components/ThemeToggle';
 import { useCurrentWeather, useForecastWeather, useGeolocation } from '@/hooks/useWeather';
+import DefaultLocationCards from '@/components/DefaultLocationCards';
 
 const Index = () => {
   const [location, setLocation] = useState('London');
@@ -81,10 +81,10 @@ const Index = () => {
           <div className="flex justify-between items-start mb-8">
             <div />
             <div className="text-center">
-              <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 animate-fade-in text-gradient drop-shadow-lg">
+              <h1 className="text-5xl md:text-7xl font-bold text-gradient mb-6 animate-fade-in drop-shadow-lg">
                 Weather App
               </h1>
-              <p className="text-white/90 text-xl mb-8 animate-slide-up font-medium">
+              <p className="text-light text-xl mb-8 animate-slide-up font-medium">
                 Beautiful weather forecasts for anywhere in the world
               </p>
             </div>
@@ -102,10 +102,14 @@ const Index = () => {
           </div>
         </div>
         
+        {!currentWeather && !isLoading && !hasError && (
+          <DefaultLocationCards onLocationSelect={handleLocationSelect} />
+        )}
+        
         {isLoading && (
           <div className="flex flex-col items-center gap-6 py-16">
             <LoadingSpinner size="lg" />
-            <p className="text-white/90 text-lg font-medium">Loading weather data...</p>
+            <p className="text-light text-lg font-medium">Loading weather data...</p>
           </div>
         )}
         
@@ -134,10 +138,23 @@ const Index = () => {
           </div>
         )}
         
-        <footer className="text-center mt-16 pt-8 border-t border-white/30">
-          <p className="text-white/70 text-sm font-medium">
-            Weather data provided by WeatherAPI
-          </p>
+        <footer className="text-center mt-16 pt-8 border-t border-white/20">
+          <div className="space-y-2">
+            <p className="footer-text text-sm">
+              Weather data provided by WeatherAPI
+            </p>
+            <p className="footer-text text-sm">
+              Desenvolvido por{' '}
+              <a 
+                href="https://www.matheuslaurindo.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="footer-link font-medium underline hover:no-underline"
+              >
+                Matheus Laurindo
+              </a>
+            </p>
+          </div>
         </footer>
       </div>
     </div>
