@@ -2,15 +2,22 @@
 import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { WeatherData, SearchLocation } from '@/types/weather';
+import { getRandomMockData } from '@/data/mockWeatherData';
 
 const API_BASE_URL = 'https://api.weatherapi.com/v1';
 const API_KEY = 'demo';
+const USE_MOCK_DATA = true;
 
 export const useCurrentWeather = (location: string) => {
   return useQuery({
     queryKey: ['weather', 'current', location],
     queryFn: async (): Promise<WeatherData> => {
       if (!location) throw new Error('Location is required');
+      
+      if (USE_MOCK_DATA) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return getRandomMockData();
+      }
       
       const response = await fetch(
         `${API_BASE_URL}/current.json?key=${API_KEY}&q=${encodeURIComponent(location)}&aqi=no`
@@ -33,6 +40,11 @@ export const useForecastWeather = (location: string, days: number = 5) => {
     queryKey: ['weather', 'forecast', location, days],
     queryFn: async (): Promise<WeatherData> => {
       if (!location) throw new Error('Location is required');
+      
+      if (USE_MOCK_DATA) {
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        return getRandomMockData();
+      }
       
       const response = await fetch(
         `${API_BASE_URL}/forecast.json?key=${API_KEY}&q=${encodeURIComponent(location)}&days=${days}&aqi=no&alerts=no`

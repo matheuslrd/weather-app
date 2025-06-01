@@ -1,18 +1,21 @@
 
 import { useState, useEffect } from 'react';
 import { useToast } from '@/hooks/use-toast';
+import { useTheme } from '@/hooks/useTheme';
 import SearchInput from '@/components/SearchInput';
 import CurrentWeather from '@/components/CurrentWeather';
 import ForecastCard from '@/components/ForecastCard';
 import HourlyForecast from '@/components/HourlyForecast';
 import LoadingSpinner from '@/components/LoadingSpinner';
 import ErrorMessage from '@/components/ErrorMessage';
+import ThemeToggle from '@/components/ThemeToggle';
 import { useCurrentWeather, useForecastWeather, useGeolocation } from '@/hooks/useWeather';
 
 const Index = () => {
   const [location, setLocation] = useState('London');
   const { toast } = useToast();
   const { getCurrentLocation, isLoading: geoLoading } = useGeolocation();
+  const { weatherTheme, updateWeatherTheme } = useTheme();
   
   const {
     data: currentWeather,
@@ -27,6 +30,12 @@ const Index = () => {
     error: forecastError,
     refetch: refetchForecast,
   } = useForecastWeather(location, 5);
+
+  useEffect(() => {
+    if (currentWeather?.current?.condition?.text) {
+      updateWeatherTheme(currentWeather.current.condition.text);
+    }
+  }, [currentWeather, updateWeatherTheme]);
   
   const handleLocationSelect = (newLocation: string) => {
     setLocation(newLocation);
@@ -64,15 +73,21 @@ const Index = () => {
   const hasError = currentError || forecastError;
   
   return (
-    <div className="min-h-screen bg-weather-gradient">
+    <div className={`min-h-screen weather-bg-${weatherTheme} transition-all duration-1000`}>
       <div className="container mx-auto px-4 py-8">
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
-            Weather App
-          </h1>
-          <p className="text-white/80 text-lg mb-8 animate-slide-up">
-            Get real-time weather information for any location
-          </p>
+          <div className="flex justify-between items-start mb-6">
+            <div />
+            <div>
+              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4 animate-fade-in">
+                Weather App
+              </h1>
+              <p className="text-white/80 text-lg mb-8 animate-slide-up">
+                Get real-time weather information for any location
+              </p>
+            </div>
+            <ThemeToggle />
+          </div>
           
           <div className="flex justify-center animate-slide-up">
             <SearchInput
